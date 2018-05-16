@@ -57,34 +57,6 @@ public class MapActivity extends AppCompatActivity {
                 });
             }
         });
-
-
-
-        /*mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(MapboxMap mapboxMap) {
-                MapOptions opts = new MapOptions.Builder()
-                        .build();
-
-                mapwizePlugin = new MapwizePlugin(mapView, opts);
-                setupLocationProvider();
-
-
-                basicStepIndoorLocationProvider.start();
-
-                mapwizePlugin.setOnMapClickListener(new MapwizePlugin.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(LatLngFloor latLngFloor) {
-                        Log.d("ok", "poo");
-                        Location location = new Location(basicStepIndoorLocationProvider.getName());
-                        location.setLatitude(latLngFloor.getLatitude());
-                        location.setLongitude(latLngFloor.getLongitude());
-                        IndoorLocation indoorLocation = new IndoorLocation(basicStepIndoorLocationProvider.getName(), latLngFloor.getLatitude(), latLngFloor.getLongitude(), latLngFloor.getFloor(), System.currentTimeMillis());
-                        basicStepIndoorLocationProvider.setIndoorLocation(indoorLocation);
-                    }
-                });
-            }
-        });*/
     }
 
     private void setupLocationProvider() {
@@ -97,7 +69,6 @@ public class MapActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Log.d("MapActivity", "onRequestPermissionsResult");
         switch (requestCode) {
             case MY_PERMISSION_ACCESS_FINE_LOCATION: {
                 if (grantResults.length > 0
