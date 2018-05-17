@@ -11,13 +11,13 @@ ILBasicStepProvider = new BasicStepIndoorLocationProvider(getSystemService(SENSO
 Set/Move provider's location:
 
 ```
-ILNavisensProvider.setIndoorLocationi(indoorLocation);     
+ILBasicStepProvider.setIndoorLocationi(indoorLocation);     
 ```
 
 Set the provider in your Mapwize SDK:
 
 ```
-mapwizePlugin.setLocationProvider(ILNavisensProvider);     
+mapwizePlugin.setLocationProvider(ILBasicStepProvider);     
 ```
 
 ## Demo
