@@ -34,8 +34,7 @@ public class MapActivity extends AppCompatActivity {
         mapView.onCreate(savedInstanceState);
 
 
-        MapOptions opts = new MapOptions.Builder()
-                .build();
+        MapOptions opts = new MapOptions.Builder().build();
         mapwizePlugin = new MapwizePlugin(mapView, opts);
         mapwizePlugin.setOnDidLoadListener(new MapwizePlugin.OnDidLoadListener() {
             @Override
