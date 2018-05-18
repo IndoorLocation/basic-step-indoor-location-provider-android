@@ -11,6 +11,8 @@ import com.mapbox.mapboxsdk.maps.MapView;
 
 import io.indoorlocation.basicsteplocationprovider.BasicStepIndoorLocationProvider;
 import io.indoorlocation.core.IndoorLocation;
+import io.indoorlocation.core.IndoorLocationProvider;
+import io.indoorlocation.manual.ManualIndoorLocationProvider;
 import io.mapwize.mapwizeformapbox.MapOptions;
 import io.mapwize.mapwizeformapbox.MapwizePlugin;
 import io.mapwize.mapwizeformapbox.model.LatLngFloor;
@@ -21,6 +23,7 @@ public class MapActivity extends AppCompatActivity {
     private MapwizePlugin mapwizePlugin;
     private BasicStepIndoorLocationProvider basicStepIndoorLocationProvider;
     private static final int MY_PERMISSION_ACCESS_FINE_LOCATION = 0;
+    private ManualIndoorLocationProvider manualIndoorLocationProvider;
 
 
     @Override
@@ -32,6 +35,7 @@ public class MapActivity extends AppCompatActivity {
         mapView = findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
 
+        manualIndoorLocationProvider = new ManualIndoorLocationProvider();
 
         MapOptions opts = new MapOptions.Builder().build();
         mapwizePlugin = new MapwizePlugin(mapView, opts);
@@ -50,7 +54,7 @@ public class MapActivity extends AppCompatActivity {
                         location.setLatitude(latLngFloor.getLatitude());
                         location.setLongitude(latLngFloor.getLongitude());
                         IndoorLocation indoorLocation = new IndoorLocation(basicStepIndoorLocationProvider.getName(), latLngFloor.getLatitude(), latLngFloor.getLongitude(), latLngFloor.getFloor(), System.currentTimeMillis());
-                        basicStepIndoorLocationProvider.setIndoorLocation(indoorLocation);
+                        manualIndoorLocationProvider.setIndoorLocation(indoorLocation);
                     }
                 });
             }
@@ -58,7 +62,7 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void setupLocationProvider() {
-        basicStepIndoorLocationProvider = new BasicStepIndoorLocationProvider(getSystemService(SENSOR_SERVICE));
+        basicStepIndoorLocationProvider = new BasicStepIndoorLocationProvider(getSystemService(SENSOR_SERVICE), manualIndoorLocationProvider);
 
 
 

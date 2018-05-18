@@ -9,7 +9,7 @@ This provider is built for education purpose and is not intended to be used in c
 Instantiate the provider with Sensor System Service
 
 ```
-BasicStepIndoorLocationProvider basicStepProvider = new BasicStepIndoorLocationProvider(getSystemService(SENSOR_SERVICE));
+BasicStepIndoorLocationProvider basicStepProvider = new BasicStepIndoorLocationProvider(getSystemService(SENSOR_SERVICE), sourceIndoorLocationProvider);
 ```
 
 Set/Move provider's location:
@@ -24,7 +24,7 @@ Set the provider in your Mapwize SDK:
 mapwizePlugin.setLocationProvider(basicStepProvider);     
 ```
 
-## Demo
+## Demo app
 A simple demo application to test the provider is available in the /app directory.
 
 You will need to set your credentials in BasicStepIndoorLocationProviderDemoApplication.

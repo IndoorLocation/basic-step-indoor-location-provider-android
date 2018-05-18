@@ -10,18 +10,20 @@ import java.util.List;
 
 import io.indoorlocation.core.IndoorLocation;
 import io.indoorlocation.core.IndoorLocationProvider;
+import io.indoorlocation.core.IndoorLocationProviderListener;
 
 import static java.lang.Math.atan2;
 import static java.lang.Math.sqrt;
 
-public class BasicStepIndoorLocationProvider extends IndoorLocationProvider implements SensorEventListener {
+public class BasicStepIndoorLocationProvider extends IndoorLocationProvider implements SensorEventListener, IndoorLocationProviderListener {
 
     private boolean isStarted = false;
+
+    private IndoorLocationProvider mSourceProvider;
 
     private final SensorManager mSensorManager;
     private final Sensor mAccelerometer;
     private final Sensor mMagnetometer;
-
 
     private final double LOW_PASS_TIME_CONSTANT = 0.15;
     private final double STEP_ACCELERATION_DEVIATION_THRESHOLD = 0.3;
@@ -44,17 +46,14 @@ public class BasicStepIndoorLocationProvider extends IndoorLocationProvider impl
     private boolean mLastMagnetometerSet = false;
 
     
-    public BasicStepIndoorLocationProvider(Object systemService) {
+    public BasicStepIndoorLocationProvider(Object systemService, IndoorLocationProvider sourceProvider) {
         super();
+        mSourceProvider = sourceProvider;
+        mSourceProvider.addListener(this);
         mSensorManager = (SensorManager) systemService;
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         accelerationBuffer = new ArrayList<>();
-    }
-
-    public void setIndoorLocation(IndoorLocation indoorLocation) {
-        lastIndoorLocation = indoorLocation;
-        dispatchIndoorLocationChange(indoorLocation);
     }
 
     @Override
@@ -173,5 +172,26 @@ public class BasicStepIndoorLocationProvider extends IndoorLocationProvider impl
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+
+    @Override
+    public void onProviderStarted() {
+        this.dispatchOnProviderStarted();
+    }
+
+    @Override
+    public void onProviderStopped() {
+        this.dispatchOnProviderStopped();
+    }
+
+    @Override
+    public void onProviderError(Error error) {
+        this.dispatchOnProviderError(error);
+    }
+
+    @Override
+    public void onIndoorLocationChange(IndoorLocation indoorLocation) {
+        lastIndoorLocation = indoorLocation;
+        dispatchIndoorLocationChange(indoorLocation);
     }
 }

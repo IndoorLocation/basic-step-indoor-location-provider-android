@@ -28,4 +28,6 @@ dependencies {
     }
     implementation project(path: ':basicsteplocationprovider')
 
+    implementation 'com.github.IndoorLocation:manual-indoor-location-provider-android:1.0.0'
+
 }
