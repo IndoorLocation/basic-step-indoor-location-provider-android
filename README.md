@@ -24,7 +24,7 @@ Set the provider in your Mapwize SDK:
 mapwizePlugin.setLocationProvider(basicStepProvider);     
 ```
 
-## Demo
+## Demo app
 A simple demo application to test the provider is available in the /app directory.
 
 You will need to set your credentials in BasicStepIndoorLocationProviderDemoApplication.
