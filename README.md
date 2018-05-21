@@ -2,7 +2,7 @@
 
 This is a very very basic relative motion provider to illustrate how motion can be used to update a phone location from an inital location. It basically counts the steps you are making and makes the location to move of a fixed distance in the direction given by the compass.
 
-This provider is built for education purpose, inspired from [https://github.com/cansurmeli/pedestrian-status]() and is not intended to be used in critical applications. For a more precise and robust solution, we advise to have a look at the [Navisens IndoorLocation Provider](https://github.com/IndoorLocation/navisens-indoor-location-provider-android).
+This provider is built for education purpose, inspired from https://github.com/cansurmeli/pedestrian-status and is not intended to be used in critical applications. For a more precise and robust solution, we advise to have a look at the [Navisens IndoorLocation Provider](https://github.com/IndoorLocation/navisens-indoor-location-provider-android).
 
 ## Use
 
