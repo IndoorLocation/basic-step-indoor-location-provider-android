@@ -13,6 +13,7 @@ import io.indoorlocation.basicsteplocationprovider.BasicStepIndoorLocationProvid
 import io.indoorlocation.core.IndoorLocation;
 import io.indoorlocation.core.IndoorLocationProvider;
 import io.indoorlocation.manual.ManualIndoorLocationProvider;
+import io.mapwize.mapwizeformapbox.AccountManager;
 import io.mapwize.mapwizeformapbox.MapOptions;
 import io.mapwize.mapwizeformapbox.MapwizePlugin;
 import io.mapwize.mapwizeformapbox.model.LatLngFloor;
@@ -34,6 +35,8 @@ public class MapActivity extends AppCompatActivity {
 
         mapView = findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
+
+        mapView.setStyleUrl("http://outdoor.mapwize.io/styles/mapwize/style.json?key=" + AccountManager.getInstance().getApiKey());
 
         manualIndoorLocationProvider = new ManualIndoorLocationProvider();
 
